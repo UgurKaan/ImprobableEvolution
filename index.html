@@ -65,24 +65,22 @@
             $(".result-number").html(result);
             $("#simpleView").html(aa + " amino aside sahip " + pn + " adet proteinin meydana gelme olasılığı(ihtimali):<br /> 1 / 10 <sup>" + (result.length - 1) + "</sup>");
             $("#resultContainer").attr("style", "");
-            setTimeout(function(){calculateExp(result.length);},10);
+            setTimeout(function(){calculateExp(result);},10);
         }
-        function calculateExp(resultLen) {
+        function calculateExp(result) {
             var m2OfEarth = 510100000 * 1000 * 1000;
             var ageOfEarth = 4543000000;
-            var ageOfEarthInMinutes = ageOfEarth * 365 * 24 * 60;
-            var ageCalculation = (m2OfEarth * ageOfEarthInMinutes * 10).toString();
-            var kat = 0;//<input type=\"text\" />
-            var newNum = "0";
-            while (true) {
-                kat++;
-                newNum = calculator.sum(newNum, ageCalculation);
-                if (newNum.length >= resultLen || kat > 1000000)
-                    break;
-            }
-            $(".extras").html("<p><b><i>Dünyanın her metrakaresinde</i></b> her dakika <b>10</b>  deneme yapılsaydı," +
-                " dünyanın yaşının ortalama <b>" + kat +
+            var ageOfEarthInSeconds = ageOfEarth * 365 * 24 * 60 *60;
+            var ageOfUniverse = 14000000000;
+            var ageOfUniverseInSeconds = (ageOfUniverse * 365 * 24 * 60 *60).toString();
+            var ageCalculation = calculator.multiply(m2OfEarth.toString(),ageOfEarthInSeconds.toString());
+            console.log("ageCalc",ageCalculation);
+            var kat = result.substr(0,result.length-ageCalculation.length);//21738917381
+            var katUvs = result.substr(0,result.length-ageOfUniverseInSeconds.length);//21738917381
+            $(".extras").html("<p><b><i>Dünyanın her metrakaresinde</i></b> <b>her saniye 1</b>  deneme yapılsaydı," +
+                " dünyanın yaşının ortalama <b>" + " 10<sup>"+(kat.length-1)+"</sup> "+
                 " katı</b> sürede belirttiğiniz koşullara uygun bir hücrenin meydana gelmesi için gerekli tüm olasılıklar oluşurdu.</p>" +
+                "<p> Her saniye evrende 1 deneme yapılsaydı, hücre için gerekli protein dizilimi için evrenin <b>10<sup>" + (katUvs.length-1)+"</sup></b> katı bir süre gerekirdi."+
                 '<p><b>EK BİLGİ:</b>İstatistik bilimine göre 1/10<sup>50</sup>\'den küçük istatistiklerin gerçekleşme ihtimali 0 "sıfır" olarak kabul edilir. </p> ');
 
 
