@@ -1,0 +1,15 @@
+.result-number{
+    word-break: break-word;
+}
+h2{width:100%;}
+
+.bold-text{
+    font-weight: bolder;
+    font-size: xx-large;
+    color: #444;
+}
+.separator{
+    width:100%;
+    height: 5px;
+    background-color: #444;
+}
