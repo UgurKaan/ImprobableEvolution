@@ -59,22 +59,33 @@
 
     <script type="text/javascript">
         function calculateIt() {
-            var aa =$("#txtNumberOfAminoAcids").val();
-            var pn= $("#txtNumberOfProteins").val();
+            var aa = $("#txtNumberOfAminoAcids").val();
+            var pn = $("#txtNumberOfProteins").val();
             var result = calculate(aa, pn);
             $(".result-number").html(result);
-            $("#simpleView").html(aa+" amino aside sahip "+ pn+" adet proteinin meydana gelme olasılığı(ihtimali):<br /> 1 / 10 <sup>"+(result.length-1)+"</sup>");
-            $("#resultContainer").attr("style","");
+            $("#simpleView").html(aa + " amino aside sahip " + pn + " adet proteinin meydana gelme olasılığı(ihtimali):<br /> 1 / 10 <sup>" + (result.length - 1) + "</sup>");
+            $("#resultContainer").attr("style", "");
+            setTimeout(function(){calculateExp(result.length);},10);
+        }
+        function calculateExp(resultLen) {
             var m2OfEarth = 510100000 * 1000 * 1000;
             var ageOfEarth = 4543000000;
             var ageOfEarthInMinutes = ageOfEarth * 365 * 24 * 60;
             var ageCalculation = (m2OfEarth * ageOfEarthInMinutes * 10).toString();
-            var kat = result.length - ageCalculation.length;//<input type=\"text\" />
+            var kat = 0;//<input type=\"text\" />
+            var newNum = "0";
+            while (true) {
+                kat+=100;
+                newNum = calculator.sum(newNum, ageCalculation);
+                if (newNum.length >= resultLen || kat > 1000000)
+                    break;
+            }
             $(".extras").html("<p><b><i>Dünyanın her metrakaresinde</i></b> her dakika <b>10</b>  deneme yapılsaydı," +
-                " dünyanın yaşının <b>" + kat + 
-                    " katı</b> sürede belirttiğiniz koşullara uygun bir hücrenin meydana gelmesi için gerekli tüm olasılıklar oluşurdu.</p>"+
-                    '<p><b>EK BİLGİ:</b>İstatistik bilimine göre 1/10<sup>50</sup>\'den küçük istatistiklerin gerçekleşme ihtimali 0 "sıfır" olarak kabul edilir. </p> ');
-            
+                " dünyanın yaşının ortalama <b>" + kat +
+                " katı</b> sürede belirttiğiniz koşullara uygun bir hücrenin meydana gelmesi için gerekli tüm olasılıklar oluşurdu.</p>" +
+                '<p><b>EK BİLGİ:</b>İstatistik bilimine göre 1/10<sup>50</sup>\'den küçük istatistiklerin gerçekleşme ihtimali 0 "sıfır" olarak kabul edilir. </p> ');
+
+
         }
     </script>
 
