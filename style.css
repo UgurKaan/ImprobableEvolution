@@ -1,8 +1,9 @@
 .result-number{
     word-break: break-word;
 }
-h2{width:100%;}
-
+h1 {
+    font-size: 60px;
+}
 .bold-text{
     font-weight: bolder;
     font-size: xx-large;
