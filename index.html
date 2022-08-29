@@ -42,13 +42,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 text-center">
-
-                <h2>Sonuç</h2>
+            <div class="col-lg-12 text-center" id="resultContainer" style="display: none;">
+                <h2 id="simpleView" class="bold-text"></h2>
+                <hr />
+                <h2 id="totalDesc" class="bold-text">Diğer Yazılış Şekliyle</h2>
                 <p class="bold-text">1</p>
                 <div class="separator"></div>
                 <div class="text-center  bold-text result-number"></div>
-                <div class="extras">
+                <div class="extras alert alert-info mt-5 ">
                 </div>
             </div>
 
@@ -58,15 +59,22 @@
 
     <script type="text/javascript">
         function calculateIt() {
-            var result = calculate($("#txtNumberOfAminoAcids").val(), $("#txtNumberOfProteins").val());
+            var aa =$("#txtNumberOfAminoAcids").val();
+            var pn= $("#txtNumberOfProteins").val();
+            var result = calculate(aa, pn);
             $(".result-number").html(result);
+            $("#simpleView").html(aa+" amino aside sahip "+ pn+" adet proteinin meydana gelme olasılığı(ihtimali):<br /> 1 / 10 <sup>"+(result.length-1)+"</sup>");
+            $("#resultContainer").attr("style","");
             var m2OfEarth = 510100000 * 1000 * 1000;
             var ageOfEarth = 4543000000;
             var ageOfEarthInMinutes = ageOfEarth * 365 * 24 * 60;
             var ageCalculation = (m2OfEarth * ageOfEarthInMinutes * 10).toString();
             var kat = result.length - ageCalculation.length;
-            $(".extras").html("Dünyanın her metrakaresinde her saniye <b>10</b>  deneme yapılsaydı," +
-                " dünyanın yaşının <b>" + kat + " katı</b> sürede belirttiğiniz koşullara uygun bir hücrenin meydana gelmesi için gerekli tüm olasılıklar oluşurdu.");
+            $(".extras").html("<p><b><i>Dünyanın her metrakaresinde</i></b> her saniye <b>10</b>  deneme yapılsaydı," +
+                " dünyanın yaşının <b>" + kat + 
+                    " katı</b> sürede belirttiğiniz koşullara uygun bir hücrenin meydana gelmesi için gerekli tüm olasılıklar oluşurdu. Ancak +500 proteinden meydana gelen hücreler </p>"+
+                    '<p>İstatistik bilimine göre 1/10<sup>50</sup>\'den küçük istatistiklerin gerçekleşme ihtimali 0 "sıfır" olarak kabul edilir. </p> ');
+            
         }
     </script>
 
